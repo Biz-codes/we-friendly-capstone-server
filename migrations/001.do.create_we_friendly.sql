@@ -81,6 +81,7 @@ CREATE TABLE businesses (
     address VARCHAR(255),
     city VARCHAR(255) NOT NULL,
     state state_district_territory NOT NULL,
+    -- zipcode ,
     website VARCHAR(255)
 );
 
