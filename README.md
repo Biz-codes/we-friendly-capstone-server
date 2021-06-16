@@ -216,8 +216,7 @@ User Flows
     ├── /users
     │   └── POST
     │       └── /
-    ├── /supplies
-    |   └── GET
+    ├── /businesses
     |       ├── /:user_id
     |   └── POST
     |       ├── /

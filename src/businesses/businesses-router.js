@@ -28,8 +28,8 @@ businessesRouter
     })
 
     .post(jsonParser, (req, res, next) => {
-        const { category, name, address, city, state, website } = req.body;
-        const newBusiness = { category, name, address, city, state, website };
+        const { adder_id, category, name, address, city, state, website } = req.body;
+        const newBusiness = { adder_id, category, name, address, city, state, website };
     
         for (const [key, value] of Object.entries(newBusiness))
           if (value == null)
@@ -82,8 +82,8 @@ businessesRouter
     })
     .patch(jsonParser, (req, res, next) => {
 
-        const { category, name, address, city, state, website } = req.body
-        const businessToUpdate = { category, name, address, city, state, website }
+        const { adder_id, category, name, address, city, state, website } = req.body
+        const businessToUpdate = { adder_id, category, name, address, city, state, website }
 
         const numberOfValues = Object.values(businessToUpdate).filter(Boolean).length
         if (numberOfValues === 0) {
@@ -139,5 +139,26 @@ businessesRouter
         .catch(next)
     })
     
+businessesRouter
+    .route('/states/:business_category')
+    .all((req, res, next) => {
+        
+        //connect to the service to get the data
+        BusinessesService.getBusinessesByCategory(
+            req.app.get('db'),
+            req.params.business_category
+        )
+        .then(businesses => {
+            if(!businesses) {
+                return res.status(404).json({
+                    error: {
+                        message: `No businesses in that category in the database`
+                    }
+                })
+            }
+            res.json(businesses.map(serializeBusiness))            
+        })
+        .catch(next)
+    })
 
 module.exports = businessesRouter
