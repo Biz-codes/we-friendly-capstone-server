@@ -12,92 +12,92 @@ of businesses, filtering by specific business and community categories, and sort
 
 
 
-### 1. Working Prototype
+### 1. Working Prototype (to do later)
 You can access a working prototype of the React app here: https://we-friendly.vercel.app/ and Node app here: https://we-friendly.herokuapp.com/
 
 
 
-### 2. User Stories 
+### 2. User Stories (done)
 This app is for two types of users: a visitor and a logged-in user.
 
-##### Landing Page/Sign Up Page 
+##### Landing Page/Sign Up Page (Priority - High Est. 1h) (to do later)
 * as a visitor,
 * I want to sign up for an account,
 * so I can view and write reviews
 
-##### Landing Page/Log In Page
+##### Landing Page/Log In Page (Priority - High Est. 1h) (to do later)
 * as a visitor,
 * I want to log into a demo account,
 * so I can try out the app
 
-##### Landing Page/Log In Page
+##### Landing Page/Log In Page (Priority - High Est. 1h) (to do later)
 * as a logged-in user,
 * I want to log into my account,
 * so I can search for and write reviews
 
-##### Reviews Page
+##### Reviews Page (Priority - High Est. 3h) (to do later)
 * as a logged-in user,
 * I want to search for reviews by business name and/or zipcode, filter by state, business type and/or identity group, and sort by rating, date modified, name, or zipcode,
 * so I can find reviews of relevant businesses and services where I can have positive experiences
 
-##### Reviews Page
+##### Reviews Page (Priority - High Est. 1h) (to do later)
 * as a logged-in user,
 * I want to click on the name of each business or service being reviewed and link to the Businesses Page, 
 * so I can find contact information for places with positive reviews
 
-##### Businesses Page
+##### Businesses Page (Priority - High Est. 3h) (to do later)
 * as a logged-in user,
 * I want to search for businesses and services by name and/or zipcode, filter by state and/or business type, and sort by name or zipcode,
 * so I can review businesses/services I have visited, and visit ones from the Reviews Page
 
-##### Businesses Page
+##### Businesses Page (Priority - High Est. 1h) (to do later)
 * as a logged-in user,
 * I want to click on a link for each business or service and link to the Reviews Page,
 * so I can read the reviews for that business
 
-##### Businesses Page
+##### Businesses Page (Priority - High Est. 1h) (to do later)
 * as a logged-in user,
 * I want to click on link buttons for each business or service
 * so I can add a business, write a review, or save a business
 
-##### Saved Page
+##### Saved Page (Priority - High Est. 2h) (to do later)
 * as a logged-in user,
 * I want to view, edit and delete reviews I have written,
 * so I can manage the reviews I write
 
-##### Saved Page
+##### Saved Page (Priority - High Est. 2h) (to do later)
 * as a logged-in user,
 * I want to view and edit businesses and services I have added to the database,
 * so I can follow a link to write a review
 
-##### Saved Page
+##### Saved Page (Priority - High Est. 2h) (to do later)
 * as a logged-in user,
 * I want to view, delete, and link to write a review of businesses and services I have saved,
 * so I can remember to try (or avoid) places based on reviews
 
-##### Add Review Page
+##### Add Review Page (Priority - High Est. 2h) (to do later)
 * as a logged-in user,
 * I want to write and post reviews 
 * To share my experiences with other users
 
-##### Add Business Page
+##### Add Business Page (Priority - High Est. 2h) (to do later)
 * as a logged-in user,
 * I want to add information for businesses and services
 * so that other people and I can review them
 
-##### Edit Review Page
+##### Edit Review Page (Priority - High Est. 2h) (to do later)
 * as a logged-in user,
 * I want to edit my previous reviews
 * in case I made errors or have had a different experience
 
-##### Edit Business Page
+##### Edit Business Page (Priority - High Est. 2h) (to do later)
 * as a logged-in user,
 * I want to edit businesses and services I have added
 * in case I made errors, or something has changed about their contact information
 
 
 
-### 3. Functionality 
+### 3. Functionality (done)
 The app's functionality (v1.0) includes:
 * All users can access a demo account to try the app.
 * All users can create an account.
@@ -113,14 +113,14 @@ The app's functionality (v1.0) includes:
 
 
 
-### 4. Technology
+### 4. Technology (done)
 * Front-End: HTML5, CSS3, JavaScript ES6, React
 * Back-End: Node.js, Express.js, Mocha, Chai, RESTful API Endpoints, Postgres
 * Development Environment: Heroku, DBeaver
 
 
 
-### 5. Wireframes
+### 5. Wireframes (done)
 Landing Page
 :-------------------------:
 ![Landing Page](/github-images/wireframes/landing-page.jpeg)
@@ -148,60 +148,65 @@ User Flows
 
 
 
-### 6. Front-end Structure - React Components Map
+### 6. Front-end Structure - React Components Map (done)
 * __index.js__ (stateless)
     * __App.js__ (stateful)
         * __Landing.js__ (stateless)
             * __LogIn.js__ (stateful)
             * __SignUp.js__ (stateful)
-            * __Dashboard.js__ (stateless)
-                * __Nav.js__ (stateless)
-                * __Supplies.js__  (stateful)
-                    * __AddSupply.js__ (stateful)
-                    * __EditSupply.js__ (stateful)
-                * __Tools.js__ (stateful)
-                    * __AddTool.js__ (stateful)
-                    * __EditTool.js__ (stateful)
-                * __Projects.js__ (stateful)
-                    * __AddProject.js__ (stateful))
-                    * __EditProject.js__ (stateful)
+            * __Nav.js__ (stateless)
+            * __Businesses.js__ (stateful)
+                * __AddBus.js__ (stateful)
+                * __EditBus.js__ (stateful)
+                * __FilterBus.js__ (stateful)      
+            * __Reviews.js__  (stateful)
+                * __AddRev.js__ (stateful)
+                * __EditRev.js__ (stateful)
+                * __FilterRev.js__ (stateful)
+            * __Saved.js__ (stateful)
+                * __SavedNav.js__ (stateful))
+                * __RevBy.js__ (stateful)
+                * __BusAdded.js__ (stateful)
+                * __Remember.js__ (stateful)
 
 
 
-### 7. Back-end Structure - Business Objects
+### 7. Back-end Structure - Business Objects (done)
 * Users (database table)
     * id (auto-generated)
-    * username (email validation)
-    * password (at least 8 chars, at least one alpha and a special character validation)
+    * username (at least 3 characters, validated for uniqueness)
+    * password (at least 8 chars, at least one alpha and one number validation)
     * name (full name, at least 3 chars)
-* Supplies (database table)
+* Businesses (database table)
     * id (auto-generated)
     * user_id (foreign key to users table)
-    * supply_name (varchar255 NOT NULL)
-    * details (text)
-    * quantity (integer NOT NULL default 0)
-* Tools (database table)
+    * adder_id (foreign key to users table)
+    * category (from enum business_type type)
+    * name (at least 3 characters)
+    * address (VARCHAR(255)),
+    * city (VARCHAR(255) NOT NULL)
+    * state (from enum state_district_territory type NOT NULL)
+    * zipcode (5 characters)
+    * website (VARCHAR(255), validated for url)
+* Reviews (database table)
+    * id (auto-generated)
+    * reviewer_id (foreign key to users table)
+    * business_id (foreign key to businesses table)
+    * date_modified (TIMESTAMPTZ NOT NULL DEFAULT now)
+    * friendly_for (from enum identity_group type)
+    * rating (1-5, NOT NULL)
+    * review (VARCHAR(255) NOT NULL)
+* Saved Businesses (database table)
     * id (auto-generated)
     * user_id (foreign key to users table)
-    * tool_name (varchar255 NOT NULL)
-    * details (text)
-    * quantity (integer NOT NULL default 0)
-* Projects (database table)
-    * id (auto-generated)
-    * user_id (foreign key to users table)
-    * project_name (varchar255 NOT NULL)
-    * tools_needed (text)
-    * supplies_needed (text)
-    * instructions (text)
-    * delivery_date ()
-    * done (varchar255 NOT NULL)
+    * business_id (foreign key to businesses table)
 
     
 
 
 
-### 8. API Documentation
-#### API Overview
+### 8. API Documentation (to do now)
+#### API Overview 
 ```text
     /api
     .
@@ -528,7 +533,7 @@ User Flows
 
 
 
-### 9. Screenshots
+### 9. Screenshots (to do later)
 Landing Page
 :-------------------------:
 ![Landing Page](/github-images/screenshots/landing-page.png)
@@ -559,7 +564,7 @@ Edit Project
 
 
 
-### 10. Development Roadmap
+### 10. Development Roadmap (to do later)
 This is v2.0 of the app, but future enhancements are expected to include:
 * add functionality to allow users to create a shopping list for items they are missing for a project
 * add functionality for users to retrieve forgotten log in information
@@ -570,15 +575,15 @@ This is v2.0 of the app, but future enhancements are expected to include:
 
 
 
-### 11. How to run it
+### 11. How to run it (done)
 Use command line to navigate into the project folder and run the following in terminal
 
-##### Local React scripts
+##### Local React scripts (done)
 * To install the react project ===> npm install
 * To run react (on port 3000) ===> npm start
 * To run tests ===> npm run test
 
-##### Local Node scripts
+##### Local Node scripts (done)
 * To install the node project ===> npm install
 * To migrate the database ===> npm run migrate -- 1
 * To run Node server (on port 8000) ===> npm run dev
