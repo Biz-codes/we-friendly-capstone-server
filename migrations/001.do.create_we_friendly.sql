@@ -32,7 +32,7 @@ CREATE TYPE state_district_territory AS ENUM (
     'IL',
     'IN',
     'KS',
-    'KY'
+    'KY',
     'LA',
     'MA',
     'MD',
@@ -42,7 +42,7 @@ CREATE TYPE state_district_territory AS ENUM (
     'MO',
     'MS',
     'MT',
-    'NC'
+    'NC',
     'ND',
     'NE',
     'NH',

@@ -140,19 +140,19 @@ businessesRouter
     })
     
 businessesRouter
-    .route('/states/:business_category')
+    .route('/states/:state')
     .all((req, res, next) => {
         
         //connect to the service to get the data
-        BusinessesService.getBusinessesByCategory(
+        BusinessesService.getBusinessesByState(
             req.app.get('db'),
-            req.params.business_category
+            req.params.state
         )
         .then(businesses => {
             if(!businesses) {
                 return res.status(404).json({
                     error: {
-                        message: `No businesses in that category in the database`
+                        message: `No businesses in that state in the database`
                     }
                 })
             }

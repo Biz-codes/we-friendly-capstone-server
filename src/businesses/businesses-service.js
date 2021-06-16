@@ -31,7 +31,12 @@ const BusinessesService = {
             .where('category', category)
     },
 
-    
+    getBusinessesByState(knex, state) {
+        return knex
+            .select('*')
+            .from('businesses')
+            .where('state', state)
+    }
 
     updateBusiness(knex, id, newBusinessFields) {
         return knex('businesses')
