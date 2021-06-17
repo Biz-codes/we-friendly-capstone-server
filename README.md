@@ -60,17 +60,17 @@ This app is for two types of users: a visitor and a logged-in user.
 * I want to click on link buttons for each business or service
 * so I can add a business, write a review, or save a business
 
-##### Saved Page (Priority - High Est. 2h) (to do later)
+##### Saved Page (Priority - Medium Est. 2h) (to do later)
 * as a logged-in user,
 * I want to view, edit and delete reviews I have written,
 * so I can manage the reviews I write
 
-##### Saved Page (Priority - High Est. 2h) (to do later)
+##### Saved Page (Priority - Medium Est. 2h) (to do later)
 * as a logged-in user,
 * I want to view and edit businesses and services I have added to the database,
 * so I can follow a link to write a review
 
-##### Saved Page (Priority - High Est. 2h) (to do later)
+##### Saved Page (Priority - Medium Est. 2h) (to do later)
 * as a logged-in user,
 * I want to view, delete, and link to write a review of businesses and services I have saved,
 * so I can remember to try (or avoid) places based on reviews
@@ -85,12 +85,12 @@ This app is for two types of users: a visitor and a logged-in user.
 * I want to add information for businesses and services
 * so that other people and I can review them
 
-##### Edit Review Page (Priority - High Est. 2h) (to do later)
+##### Edit Review Page (Priority - Medium Est. 2h) (to do later)
 * as a logged-in user,
 * I want to edit my previous reviews
 * in case I made errors or have had a different experience
 
-##### Edit Business Page (Priority - High Est. 2h) (to do later)
+##### Edit Business Page (Priority - Medium Est. 2h) (to do later)
 * as a logged-in user,
 * I want to edit businesses and services I have added
 * in case I made errors, or something has changed about their contact information
