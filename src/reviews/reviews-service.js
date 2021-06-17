@@ -1,17 +1,9 @@
 const ReviewsService = {
 
-    getAllReviews(knex) {
+    getReviews(knex) {
         return knex
             .select('*')
             .from('reviews') 
-    },
-
-    getById(knex, id) {
-        return knex
-            .from('reviews')
-            .select('*')
-            .where('id', id)
-            .first()
     },
 
     insertReview(knex, newReview) {
@@ -24,25 +16,33 @@ const ReviewsService = {
             })
     },
 
+    getById(knex, id) {
+        return knex
+            .from('reviews')
+            .select('*')
+            .where('id', id)
+            .first()
+    },
+
     getReviewsByBusiness(knex, business_id) {
         return knex
             .select('*')
             .from('reviews')
-            .where(business_id, business_id)
+            .where('business_id', business_id)
     },
 
     getReviewsByReviewer(knex, reviewer_id) {
         return knex
             .select('*')
             .from('reviews')
-            .where(reviewer_id, reviewer_id)
+            .where('reviewer_id', reviewer_id)
     },
 
     getReviewsByIdentityGroup(knex, friendly_for) {
         return knex
             .select('*')
             .from('reviews')
-            .where(friendly_for, friendly_for)
+            .where('friendly_for', friendly_for)
     },
 
     updateReview(knex, id, newReviewFields) {

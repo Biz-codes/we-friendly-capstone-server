@@ -81,14 +81,14 @@ reviewsRouter
     })
     .patch(jsonParser, (req, res, next) => {
 
-        const { reviewer_id, category, name, address, city, state, website } = req.body
-        const reviewToUpdate = { reviewer_id, category, name, address, city, state, website }
+        const { reviewer_id, business_id, date_modified, friendly_for, rating, review } = req.body
+        const reviewToUpdate = { reviewer_id, business_id, date_modified, friendly_for, rating, review }
 
         const numberOfValues = Object.values(reviewToUpdate).filter(Boolean).length
         if (numberOfValues === 0) {
             return res.status(400).json({
                 error: {
-                    message: `Request body must contain either 'category', 'name', 'address', 'city', 'state', or 'website'.`
+                    message: `Request body must contain either 'friendly_for', 'rating', or 'review'.`
                 }
             })
         }
@@ -118,7 +118,29 @@ reviewsRouter
 
 
 reviewsRouter
-    .route('/added-by-me/:reviewer_id')
+    .route('/reviews-by-business/:business_id')
+    .all((req, res, next) => {
+        
+        //connect to the service to get the data
+        ReviewsService.getReviewsByBusiness(
+            req.app.get('db'),
+            req.params.business_id
+        )
+        .then(reviews => {
+            if(!reviews) {
+                return res.status(404).json({
+                    error: {
+                        message: `This business does not have any reviews in the database`
+                    }
+                })
+            }
+            res.json(reviews.map(serializeReview))            
+        })
+        .catch(next)
+    })
+
+reviewsRouter
+    .route('/written-by-me/:reviewer_id')
     .all((req, res, next) => {
         
         //connect to the service to get the data
@@ -131,6 +153,28 @@ reviewsRouter
                 return res.status(404).json({
                     error: {
                         message: `This user has not added any reviews in the database`
+                    }
+                })
+            }
+            res.json(reviews.map(serializeReview))            
+        })
+        .catch(next)
+    })
+
+reviewsRouter
+    .route('/identities/:friendly_for')
+    .all((req, res, next) => {
+        
+        //connect to the service to get the data
+        ReviewsService.getReviewsByIdentityGroup(
+            req.app.get('db'),
+            req.params.friendly_for
+        )
+        .then(reviews => {
+            if(!reviews) {
+                return res.status(404).json({
+                    error: {
+                        message: `There are no reviews for this group yet in the database`
                     }
                 })
             }

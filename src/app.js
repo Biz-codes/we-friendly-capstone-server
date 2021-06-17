@@ -9,6 +9,7 @@ const errorHandler = require("./middleware/error-handler");
 const authRouter = require("./auth/auth-router");
 const usersRouter = require('./users/users-router')
 const businessesRouter = require('./businesses/businesses-router')
+const reviewsRouter = require('./reviews/reviews-router')
 
 
 const app = express()
@@ -25,6 +26,7 @@ app.use(bodyParser.json());
 app.use("/api/auth", authRouter);
 app.use('/api/users', usersRouter)
 app.use('/api/businesses', businessesRouter)
+app.use('/api/reviews', reviewsRouter)
 
 
 app.get('/', (req, res) => {
