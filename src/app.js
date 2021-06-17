@@ -9,8 +9,7 @@ const errorHandler = require("./middleware/error-handler");
 const authRouter = require("./auth/auth-router");
 const usersRouter = require('./users/users-router')
 const businessesRouter = require('./businesses/businesses-router')
-// const toolsRouter = require('./tools/tools-router')
-// const projectsRouter = require('./projects/projects-router')
+
 
 const app = express()
 
@@ -24,11 +23,9 @@ app.use(bodyParser.json());
 
 //Load user login router
 app.use("/api/auth", authRouter);
-//Load user registration router
 app.use('/api/users', usersRouter)
 app.use('/api/businesses', businessesRouter)
-// app.use('/api/tools', toolsRouter)
-// app.use('/api/projects', projectsRouter)
+
 
 app.get('/', (req, res) => {
     res.send('Hello, world!')

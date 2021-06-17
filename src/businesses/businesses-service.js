@@ -36,7 +36,14 @@ const BusinessesService = {
             .select('*')
             .from('businesses')
             .where('state', state)
-    }
+    },
+
+    getBusinessesByAdder(knex, adder_id) {
+        return knex
+            .select('*')
+            .from('businesses')
+            .where('adder_id', adder_id)
+    },
 
     updateBusiness(knex, id, newBusinessFields) {
         return knex('businesses')

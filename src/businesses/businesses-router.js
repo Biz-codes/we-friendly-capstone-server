@@ -8,11 +8,13 @@ const jsonParser = express.json
 
 const serializeBusiness = business => ({
     id: business.id,
+    adder_id: business.adder_id,
     category: business.category,
     name: xss(business.name),
     address: xss(business.address),
     city: xss(business.city),
     state: business.state,
+    zipcode: business.zipcode,
     website: xss(business.website),
 })
 
@@ -24,27 +26,26 @@ businessesRouter
             .then(businesses => {
                 res.json(businesses.map(serializeBusiness))
             })
-            .catch(next);
+            .catch(next)
     })
 
     .post(jsonParser, (req, res, next) => {
-        const { adder_id, category, name, address, city, state, website } = req.body;
-        const newBusiness = { adder_id, category, name, address, city, state, website };
+        const { adder_id, category, name, address, city, state, zipcode, website } = req.body;
+        const newBusiness = { adder_id, category, name, address, city, state, zipcode, website }
     
         for (const [key, value] of Object.entries(newBusiness))
           if (value == null)
             return res.status(400).json({
-              error: { message: `Missing '${key}' in request body` },
+              error: { message: `Missing '${key}' in request body` }
             });
     
         BusinessesService.insertBusiness(req.app.get("db"), newBusiness)
           .then((business) => {
             res
               .status(201)
-              .location(path.posix.join(req.originalUrl, `/${business.id}`))
-              .json(serializeBusiness(business));
+              .json(serializeBusiness(business))
           })
-          .catch(next);
+          .catch(next)
 
     });
 
@@ -153,6 +154,28 @@ businessesRouter
                 return res.status(404).json({
                     error: {
                         message: `No businesses in that state in the database`
+                    }
+                })
+            }
+            res.json(businesses.map(serializeBusiness))            
+        })
+        .catch(next)
+    })
+
+businessesRouter
+    .route('/added-by-me/:adder_id')
+    .all((req, res, next) => {
+        
+        //connect to the service to get the data
+        BusinessesService.getBusinessesByAdder(
+            req.app.get('db'),
+            req.params.adder_id
+        )
+        .then(businesses => {
+            if(!businesses) {
+                return res.status(404).json({
+                    error: {
+                        message: `This user has not added any businesses in the database`
                     }
                 })
             }
