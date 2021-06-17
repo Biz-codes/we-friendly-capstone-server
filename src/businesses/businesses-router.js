@@ -4,7 +4,7 @@ const xss = require('xss')
 const BusinessesService = require('./businesses-service')
 
 const businessesRouter = express.Router()
-const jsonParser = express.json
+const jsonParser = express.json();
 
 const serializeBusiness = business => ({
     id: business.id,
@@ -83,20 +83,20 @@ businessesRouter
     })
     .patch(jsonParser, (req, res, next) => {
 
-        const { adder_id, category, name, address, city, state, website } = req.body
-        const businessToUpdate = { adder_id, category, name, address, city, state, website }
+        const { adder_id, category, name, address, city, state, zipcode, website } = req.body
+        const businessToUpdate = { adder_id, category, name, address, city, state, zipcode, website }
 
         const numberOfValues = Object.values(businessToUpdate).filter(Boolean).length
         if (numberOfValues === 0) {
             return res.status(400).json({
                 error: {
-                    message: `Request body must contain either 'category', 'name', 'address', 'city', 'state', or 'website'.`
+                    message: `Request body must contain either 'category', 'name', 'address', 'city', 'state', zipcode, or 'website'.`
                 }
             })
         }
 
         //save input to db
-        BusinessesService.updatedBusiness(
+        BusinessesService.updateBusiness(
             req.app.get('db'),
             req.params.business_id,
             businessToUpdate

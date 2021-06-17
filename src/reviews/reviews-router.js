@@ -4,7 +4,7 @@ const xss = require('xss')
 const ReviewsService = require('./reviews-service')
 
 const reviewsRouter = express.Router()
-const jsonParser = express.json
+const jsonParser = express.json()
 
 const serializeReview = wreview => ({
     id: wreview.id,
@@ -94,7 +94,7 @@ reviewsRouter
         }
 
         //save input to db
-        ReviewsService.updatedReview(
+        ReviewsService.updateReview(
             req.app.get('db'),
             req.params.review_id,
             reviewToUpdate

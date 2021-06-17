@@ -49,6 +49,10 @@ const ReviewsService = {
         return knex('reviews')
             .where({id})
             .update(newReviewFields)
+            .returning('*')
+            .then(rows => {
+                return rows[0]
+            })
     },
 
     deleteReview(knex, id) {

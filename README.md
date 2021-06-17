@@ -196,7 +196,7 @@ User Flows
     * friendly_for (from enum identity_group type)
     * rating (1-5, NOT NULL)
     * review (VARCHAR(255) NOT NULL)
-* Saved Businesses (database table)
+* Remembered Businesses (database table)
     * id (auto-generated)
     * user_id (foreign key to users table)
     * business_id (foreign key to businesses table)
