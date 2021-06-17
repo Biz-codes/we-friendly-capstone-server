@@ -20,7 +20,7 @@ You can access a working prototype of the React app here: https://we-friendly.ve
 ### 2. User Stories (done)
 This app is for two types of users: a visitor and a logged-in user.
 
-##### Landing Page/Sign Up Page (Priority - High Est. 1h) (to do later)
+##### Landing Page/Sign Up Page (Priority - High Est. 1h) (to do next)
 * as a visitor,
 * I want to sign up for an account,
 * so I can view and write reviews
@@ -205,7 +205,7 @@ User Flows
 
 
 
-### 8. API Documentation (to do now)
+### 8. API Documentation (done)
 #### API Overview 
 ```text
     /api
@@ -217,31 +217,37 @@ User Flows
     │   └── POST
     │       └── /
     ├── /businesses
-    |       ├── /:user_id
-    |   └── POST
-    |       ├── /
-    |   └── DELETE
-    |       ├── /:supply_id
-    |   └── PATCH
-    |       └── /:supply_id
-    ├── /tools
     |   └── GET
-    |       ├── /:user_id
+    |       ├── /
+    |       ├── /:business_id
+    |       ├── /categories/:business_category
+    |       ├── /states/:state
+    |       ├── /added-by-me/:adder_id
     |   └── POST
     |       ├── /
-    |   └── DELETE
-    |       ├── /:supply_id
     |   └── PATCH
-    |       └── /:supply_id
-    ├── projects
+    |       └── /:business_id
+    ├── /reviews
     |   └── GET
-    |       ├── /:user_id
+    |       ├── /
+    |       ├── /:review_id
+    |       ├── /reviews-by-business/:business_id
+    |       ├── /written-by-me/:reviewer_id
+    |       ├── /identities/:friendly_for
     |   └── POST
     |       ├── /
     |   └── DELETE
-    |       ├── /:supply_id
+    |       ├── /:review_id
     |   └── PATCH
-    |       └── /:supply_id
+    |       └── /:review_id
+    ├── /remembered-businesses
+    |   └── GET
+    |       ├── /:remembered_business_id
+    |       ├── /remembered-by-me/:user_id
+    |   └── POST
+    |       ├── /
+    |   └── DELETE
+    |       └── /:remembered_business_id
 ```
 
 ##### POST `/api/auth/login`
@@ -249,283 +255,577 @@ User Flows
     // req.body
     {
         "name": "Demo User",
-        "username": "demo-email@gmail.com",
-        "password": "Fabulous1"
+        "password": "Friendly1",
+        "username": "demo-email@gmail.com"
     }
 
     // res.body
     {
         "authToken": String,
-        "userId": 4
+        "userId": 1
     }
 ```
 
-##### POST `/api/users/`
+##### POST `/api/users`
 ```js
     // req.body
     {
-        "name": "Tin Woodsman",
-        "password": "Fabulous1",
-        "username": "no-heart@gmail.com"
+        "name": "Cowardly Lion",
+        "password": "Friendly1",
+        "username": "no-nerve@gmail.com"
     }
-
 
     // res.body
     {
-        "id": 10,
-        "name": "Tin Woodsman",
-        "username": "no-heart@gmail.com"
+        "name": "Cowardly Lion",
+        "password": "Friendly1",
+        "username": "no-nerve@gmail.com"
     }
 ```
 
-##### GET `/api/supplies/:user_id`
+##### GET `/api/businesses`
 ```js
-    // req.query
-        id: 2
 
     // res.body
     [
         {
-            "id": 1,
-            "user_id": 2,
-            "supply_name": "fabric - cotton - jersey knit",
-            "details": "blue, yards",
-            "quantity": 3
+            "id": 8,
+            "adder_id": 1,
+            "category": "restaurant/bar",
+            "name": "Woodstar Cafe",
+            "address": "60 Masonic Street",
+            "city": "Northampton",
+            "state": "MA",
+            "zipcode": "01060",
+            "website": "woodstarcafe.com"
         },
         {
-            "id": 4,
-            "user_id": 2,
-            "supply_name": "thread",
-            "details": "green, spools",
-            "quantity": 1
+            "id": 9,
+            "adder_id": 2,
+            "category": "shopping",
+            "name": "Cedar Chest",
+            "address": "150 Main Street",
+            "city": "Northampton",
+            "state": "MA",
+            "zipcode": "01060",
+            "website": "explorecedarchest.com"
         },
         {
-            "id": 2,
-            "user_id": 2,
-            "supply_name": "nails",
-            "details": "...",
-            "quantity": 50
+            "id": 10,
+            "adder_id": 3,
+            "category": "hotel/accommodations",
+            "name": "The Colonel Williams Inn",
+            "address": "111 Staver Road",
+            "city": "Brattleboro",
+            "state": "VT",
+            "zipcode": "05344",
+            "website": "thecolonelwilliamsinn.com"
+        },
+        {
+            "id": 11,
+            "adder_id": 1,
+            "category": "service",
+            "name": "Home Environmental Services",
+            "address": "4 School Street",
+            "city": "Westfield",
+            "state": "MA",
+            "zipcode": "01085",
+            "website": "homeenvironmentalservices.com"
+        },
+        {
+            "id": 12,
+            "adder_id": 2,
+            "category": "housing/realty",
+            "name": "Mill Valley Estates",
+            "address": "420 Riverglade Drive",
+            "city": "Amherst",
+            "state": "MA",
+            "zipcode": "01002",
+            "website": "millvalleyapts.com"
+        },
+        {
+            "id": 14,
+            "adder_id": 1,
+            "category": "healthcare",
+            "name": "Carroll McGrath APRN",
+            "address": "234 Russell Street, Suite 203",
+            "city": "Hadley",
+            "state": "MA",
+            "zipcode": "01035",
+            "website": "www.psychologytoday.com/us/psychiatrists/carroll-mcgrath-aprn-hadley-ma/174408"
+        },
+        {
+            "id": 16,
+            "adder_id": 1,
+            "category": "restaurant/bar",
+            "name": "Thai Garden",
+            "address": "2 Bridge Street",
+            "city": "Northampton",
+            "state": "MA",
+            "zipcode": "01060",
+            "website": "thaigardennorthampton.com"
+        },
+        {
+            "id": 15,
+            "adder_id": 1,
+            "category": "restaurant/bar",
+            "name": "Thai Garden",
+            "address": "2 Bridge St",
+            "city": "Northampton",
+            "state": "MA",
+            "zipcode": "01060",
+            "website": "thaigardennorthampton.com"
         }
     ]
 ```
 
-##### POST `/api/supplies/`
-```js
-    // req.body
-    {
-        "user_id": 3,
-        "supply_name": "thread",
-        "details": "green, spools",
-        "quantity": 1
-    }
-
-
-    // res.body
-    {
-        "id": 20,
-        "user_id": 3,
-        "supply_name": "thread",
-        "details": "green, spools",
-        "quantity": 1
-    }
-```
-
-##### DELETE `/api/supplies/:supply_id`
+##### GET `/api/businesses/:business_id`
 ```js
     // req.query
-    id: 3
-
-    // res.body
-    
-```
-
-##### PATCH `/api/supplies/:supply_id`
-```js
-    // req.body
-    {
-        "user_id": 2,
-        "supply_id": "dirt",
-        "details": "moo mix",
-        "quantity": 2
-    }
-    // res.body
-
-```
-
-##### GET `/api/tools/:user_id`
-```js
-    // req.query
-        id: 2
-
-    // res.body
-    [
-        {
-            "id": 2,
-            "user_id": 2,
-            "tool_name": "paintbrush",
-            "details": "large",
-            "quantity": 10
-        },
-        {
-            "id": 3,
-            "user_id": 2,
-            "tool_name": "sandpaper",
-            "details": "fine",
-            "quantity": 5
-        },
-        {
-            "id": 1,
-            "user_id": 2,
-            "tool_name": "hammer",
-            "details": "small, blue",
-            "quantity": 2
-        }
-    ]
-```
-
-##### POST `/api/tools/`
-```js
-    // req.body
-    {
-        "user_id": 3,
-        "tool_name": "origami paper",
-        "details": "multicolored sheets",
-        "quantity": 30
-    }
-
+        `/14`
 
     // res.body
     {
         "id": 14,
-        "user_id": 3,
-        "tool_name": "origami paper",
-        "details": "multicolored sheets",
-        "quantity": 30
+        "adder_id": 1,
+        "category": "healthcare",
+        "name": "Carroll McGrath APRN",
+        "address": "234 Russell Street, Suite 203",
+        "city": "Hadley",
+        "state": "MA",
+        "zipcode": "01035",
+        "website": "www.psychologytoday.com/us/psychiatrists/carroll-mcgrath-aprn-hadley-ma/174408"
     }
 ```
 
-##### DELETE `/api/tools/:tool_id`
+##### GET `/api/businesses/added-by-me/:adder_id`
 ```js
     // req.query
-    id: 5
-
-    // res.body
-    
-```
-
-##### PATCH `/api/tools/:tool_id`
-```js
-    // req.body
-    {
-        "user_id": 2,
-        "tool_name": "hammer",
-        "details": "small, blue",
-        "quantity": 3
-    }
-    // res.body
-
-```
-
-##### GET `/api/projects/:user_id`
-```js
-    // req.query
-        id: 2
+        `/2`
 
     // res.body
     [
         {
-            "id": 3,
-            "user_id": 3,
-            "project_name": "Raised Bed Garden",
-            "supplies_needed": "wood, screws, chicken wire",
-            "tools_needed": "drill, wire cutters",
-            "instructions": "1. Cut the boards, 2. Screw them together. 3. put dirt in.",
-            "delivery_date": "2021-05-02T00:00:00.000Z",
-            "done": "DONE it myself!"
+            "id": 9,
+            "adder_id": 2,
+            "category": "shopping",
+            "name": "Cedar Chest",
+            "address": "150 Main Street",
+            "city": "Northampton",
+            "state": "MA",
+            "zipcode": "01060",
+            "website": "explorecedarchest.com"
         },
         {
-            "id": 5,
-            "user_id": 3,
-            "project_name": "Stormy Pants",
-            "supplies_needed": "blue thread, jersey knit cotton, pattern",
-            "tools_needed": "marking pen, pins, scissors, sewing machine, sewing machine needle",
-            "instructions": "cut the pattern and sew",
-            "delivery_date": "2021-09-30T00:00:00.000Z",
-            "done": "to-do myself"
-        },
-        {
-            "id": 1,
-            "user_id": 3,
-            "project_name": "Beehive shelves",
-            "supplies_needed": "wood, screws",
-            "tools_needed": "saw, ruler",
-            "instructions": "Cut, screw and build",
-            "delivery_date": "2021-05-14T00:00:00.000Z",
-            "done": "doin' it myself"
-        },
-        {
-            "id": 2,
-            "user_id": 3,
-            "project_name": "Herb garden",
-            "supplies_needed": "seeds, dirt",
-            "tools_needed": "shovel, trowel",
-            "instructions": "plant",
-            "delivery_date": "2021-05-15T00:00:00.000Z",
-            "done": "DONE it myself!"
+            "id": 12,
+            "adder_id": 2,
+            "category": "housing/realty",
+            "name": "Mill Valley Estates",
+            "address": "420 Riverglade Drive",
+            "city": "Amherst",
+            "state": "MA",
+            "zipcode": "01002",
+            "website": "millvalleyapts.com"
         }
     ]
 ```
 
-##### POST `/api/projects/`
+##### GET `/api/businesses/states/:state`
+```js
+    // req.query
+        `/MA`
+
+    // res.body
+    [
+        {
+            "id": 8,
+            "adder_id": 1,
+            "category": "restaurant/bar",
+            "name": "Woodstar Cafe",
+            "address": "60 Masonic Street",
+            "city": "Northampton",
+            "state": "MA",
+            "zipcode": "01060",
+            "website": "woodstarcafe.com"
+        },
+        {
+            "id": 9,
+            "adder_id": 2,
+            "category": "shopping",
+            "name": "Cedar Chest",
+            "address": "150 Main Street",
+            "city": "Northampton",
+            "state": "MA",
+            "zipcode": "01060",
+            "website": "explorecedarchest.com"
+        },
+        {
+            "id": 11,
+            "adder_id": 1,
+            "category": "service",
+            "name": "Home Environmental Services",
+            "address": "4 School Street",
+            "city": "Westfield",
+            "state": "MA",
+            "zipcode": "01085",
+            "website": "homeenvironmentalservices.com"
+        },
+        {
+            "id": 12,
+            "adder_id": 2,
+            "category": "housing/realty",
+            "name": "Mill Valley Estates",
+            "address": "420 Riverglade Drive",
+            "city": "Amherst",
+            "state": "MA",
+            "zipcode": "01002",
+            "website": "millvalleyapts.com"
+        },
+        {
+            "id": 14,
+            "adder_id": 1,
+            "category": "healthcare",
+            "name": "Carroll McGrath APRN",
+            "address": "234 Russell Street, Suite 203",
+            "city": "Hadley",
+            "state": "MA",
+            "zipcode": "01035",
+            "website": "www.psychologytoday.com/us/psychiatrists/carroll-mcgrath-aprn-hadley-ma/174408"
+        },
+        {
+            "id": 15,
+            "adder_id": 1,
+            "category": "restaurant/bar",
+            "name": "Thai Garden",
+            "address": "2 Bridge St",
+            "city": "Northampton",
+            "state": "MA",
+            "zipcode": "01060",
+            "website": "thaigardennorthampton.com"
+        }
+    ]
+```
+
+##### GET `/api/businesses/categories/:business_category`
+```js
+    // req.query
+        `/restaurant%2Fbar`
+
+    // res.body
+    [
+        {
+            "id": 8,
+            "adder_id": 1,
+            "category": "restaurant/bar",
+            "name": "Woodstar Cafe",
+            "address": "60 Masonic Street",
+            "city": "Northampton",
+            "state": "MA",
+            "zipcode": "01060",
+            "website": "woodstarcafe.com"
+        },
+        {
+            "id": 15,
+            "adder_id": 1,
+            "category": "restaurant/bar",
+            "name": "Thai Garden",
+            "address": "2 Bridge St",
+            "city": "Northampton",
+            "state": "MA",
+            "zipcode": "01060",
+            "website": "thaigardennorthampton.com"
+        }
+    ]
+```
+
+##### POST `/api/businesses/`
 ```js
     // req.body
     {
-        "user_id": 4,
-        "project_name": "Stormy Pants",
-        "supplies_needed": "blue thread, jersey knit cotton, pattern",
-        "tools_needed": "marking pen, pins, scissors, sewing machine, sewing machine needle",
-        "instructions": "...",
-        "delivery_date": "2021-09-30T04:00:00.000Z",
-        "done": "to-do myself"
+        "adder_id": 3,
+        "category": "restaurant/bar",
+        "name": "Whetstone Station",
+        "address": "36 Bridge St",
+        "city": "Brattleboro",
+        "state": "VT",
+        "zipcode": "05301",
+        "website": "whetstonestation.com"
     }
-
 
     // res.body
     {
-        "id": 10,
-        "user_id": 4,
-        "project_name": "Stormy Pants",
-        "supplies_needed": "blue thread, jersey knit cotton, pattern",
-        "tools_needed": "marking pen, pins, scissors, sewing machine, sewing machine needle",
-        "instructions": "...",
-        "delivery_date": "2021-09-30T04:00:00.000Z",
-        "done": "to-do myself"
+        "id": 17,
+        "adder_id": 3,
+        "category": "restaurant/bar",
+        "name": "Whetstone Station",
+        "address": "36 Bridge St",
+        "city": "Brattleboro",
+        "state": "VT",
+        "zipcode": "05301",
+        "website": "whetstonestation.com"
     }
 ```
 
-##### DELETE `/api/project/:project_id`
+##### PATCH `/api/businesses/:business_id`
+```js
+    // req.body
+    {
+        "adder_id": 3,
+        "category": "restaurant/bar",
+        "name": "Whetstone Station",
+        "address": "36 Bridge Street",
+        "city": "Brattleboro",
+        "state": "VT",
+        "zipcode": "05301",
+        "website": "whetstonestation.com"
+    }
+
+    // res.body
+
+```
+
+##### GET `/api/reviews`
 ```js
     // req.query
-    id: 3
+        
+    // res.body
+    [
+        {
+            "id": 1,
+            "reviewer_id": 1,
+            "business_id": 8,
+            "date_modified": "2021-09-30T04:00:00.000Z",
+            "friendly_for": "LGBTQIA+",
+            "rating": 5,
+            "review": "Very queer friendly! And great coffee too"
+        },
+        {
+            "id": 2,
+            "reviewer_id": 2,
+            "business_id": 8,
+            "date_modified": "2021-09-30T04:00:00.000Z",
+            "friendly_for": "LGBTQIA+",
+            "rating": 5,
+            "review": "I felt totally welcomed. Northampton rocks!"
+        },
+        {
+            "id": 3,
+            "reviewer_id": 3,
+            "business_id": 9,
+            "date_modified": "2021-09-30T04:00:00.000Z",
+            "friendly_for": "Disabled persons",
+            "rating": 3,
+            "review": "I had to go out into Thornes to take the elevator to the second floor, and some of the displays were close together, but the staff were helpful!"
+        },
+        {
+            "id": 5,
+            "reviewer_id": 2,
+            "business_id": 9,
+            "date_modified": "2021-10-30T04:00:00.000Z",
+            "friendly_for": "Women",
+            "rating": 5,
+            "review": "Fun store! I mostly only saw women in there!"
+        }
+    ]
+```
+
+##### GET `/api/reviews/:review_id`
+```js
+    // req.query
+        `/2`
+    // res.body
+    {
+        "id": 2,
+        "reviewer_id": 2,
+        "business_id": 8,
+        "date_modified": "2021-09-30T04:00:00.000Z",
+        "friendly_for": "LGBTQIA+",
+        "rating": 5,
+        "review": "I felt totally welcomed. Northampton rocks!"
+    }
+```
+
+##### GET `/api/reviews/reviews-by-business/:business_id`
+```js
+    // req.query
+        `/8`
+    // res.body
+    [
+        {
+            "id": 1,
+            "reviewer_id": 1,
+            "business_id": 8,
+            "date_modified": "2021-09-30T04:00:00.000Z",
+            "friendly_for": "LGBTQIA+",
+            "rating": 5,
+            "review": "Very queer friendly! And great coffee too"
+        },
+        {
+            "id": 2,
+            "reviewer_id": 2,
+            "business_id": 8,
+            "date_modified": "2021-09-30T04:00:00.000Z",
+            "friendly_for": "LGBTQIA+",
+            "rating": 5,
+            "review": "I felt totally welcomed. Northampton rocks!"
+        }
+    ]
+```
+
+##### GET `/api/reviews/written-by-me/:reviewer_id`
+```js
+    // req.query
+        `/3`
+    // res.body
+    [
+        {
+            "id": 3,
+            "reviewer_id": 3,
+            "business_id": 9,
+            "date_modified": "2021-09-30T04:00:00.000Z",
+            "friendly_for": "Disabled persons",
+            "rating": 3,
+            "review": "I had to go out into Thornes to take the elevator to the second floor, and some of the displays were close together, but the staff were helpful!"
+        }
+    ]
+```
+
+##### GET `/api/reviews/identities/:friendly_for`
+```js
+    // req.query
+        `/Disabled%20persons`
+    // res.body
+    [
+        {
+            "id": 3,
+            "reviewer_id": 3,
+            "business_id": 9,
+            "date_modified": "2021-09-30T04:00:00.000Z",
+            "friendly_for": "Disabled persons",
+            "rating": 3,
+            "review": "I had to go out into Thornes to take the elevator to the second floor, and some of the displays were close together, but the staff were helpful!"
+        }
+    ]
+```
+
+##### POST `/api/reviews/`
+```js
+    // req.body
+    {
+        "reviewer_id": 2,
+        "business_id": 17,
+        "date_modified": "2021-09-30T04:00:00.000Z",
+        "friendly_for": "LGBTQIA+",
+        "rating": 5,
+        "review": "Beautiful looking over the river. I snuggled up with my partner and the server commented on how cute we looked."
+    }
+
+    // res.body
+    {
+        "id": 6,
+        "reviewer_id": 2,
+        "business_id": 17,
+        "date_modified": "2021-09-30T04:00:00.000Z",
+        "friendly_for": "LGBTQIA+",
+        "rating": 5,
+        "review": "Beautiful looking over the river. I snuggled up with my partner and the server commented on how cute we looked."
+    }
+```
+
+##### DELETE `/api/reviews/:review_id`
+```js
+    // req.query
+    `/4`
 
     // res.body
     
 ```
 
-##### PATCH `/api/projects/:project_id`
+##### PATCH `/api/reviews/:review_id`
 ```js
     // req.body
     {
-        "user_id": 3,
-        "project_name": "Herb garden",
-        "supplies_needed": "seeds, dirt",
-        "tools_needed": "shovel, trowel",
-        "instructions": "plant",
-        "delivery_date": "2021-06-15T00:00:00.000Z",
-        "done": "DONE it myself"
+        "reviewer_id": 2,
+        "business_id": 9,
+        "date_modified": "2021-10-30T04:00:00.000Z",
+        "friendly_for": "Women",
+        "rating": 5,
+        "review": "Great place to buy gifts! I mostly only saw women in there!"
     }
     // res.body
+    {
+        "id": 5,
+        "reviewer_id": 2,
+        "business_id": 9,
+        "date_modified": "2021-10-30T04:00:00.000Z",
+        "friendly_for": "Women",
+        "rating": 5,
+        "review": "Great place to buy gifts! I mostly only saw women in there!"
+    }
 
+```
+
+##### GET `/api/remembered-businesses/:business_id`
+```js
+    // req.query
+        `/1`
+
+    // res.body
+    {
+        "id": 1,
+        "user_id": 1,
+        "business_id": 8
+    }
+```
+
+##### GET `/api/remembered-businesses/remembered-by-me/:user_id`
+```js
+    // req.query
+        `/1`
+
+    // res.body
+    [
+        {
+            "id": 1,
+            "user_id": 1,
+            "business_id": 8
+        },
+        {
+            "id": 3,
+            "user_id": 1,
+            "business_id": 9
+        },
+        {
+            "id": 4,
+            "user_id": 1,
+            "business_id": 14
+        }
+    ]
+```
+
+##### POST `/api/remembered-businesses/`
+```js
+    // req.body
+    {
+        "user_id": 2,
+        "business_id": 10
+    }
+
+    // res.body
+    {
+        "id": 5,
+        "user_id": 2,
+        "business_id": 10
+    }
+```
+
+##### DELETE `/api/remembered-businesses/:remembered_business_id`
+```js
+    // req.query
+    `/5`
+
+    // res.body
+    
 ```
 
 
