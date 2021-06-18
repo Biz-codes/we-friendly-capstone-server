@@ -1,15 +1,6 @@
 # we-friendly 
 
-(Proposal - will make it more catchy/user-friendly)
-The "we-friendly" app would allow users to review businesses and services specifically for how "-friendly" 
-they are to members of certain communities against whom people historically discriminate. The target 
-demographic for the app would be users who are members of these communities, who want non-discriminatory 
-experiences. The categories of communities would be: "Black, Asian/Pacific Islander, Latinx, and Indigenous 
-persons", "Disabled persons", "Migrants/Immigrants", "LGBTQIA+", and "Women" . The categories of businesses 
-would be "restaurant/bar", "shopping", "hotel/accommodations", "service", "housing/realty", "education", 
-and "healthcare". "Users can create an account to rate/review businesses, as well as to search for reviews
-of businesses, filtering by specific business and community categories, and sorting by rating.
-
+we-friendly is a crowd-sourced hub for voices from communities to share insight into which spaces are respectful, accessible and affirming! Find businesses and services that are -friendly toward folx who share aspects of YOUR lived experience. Discover what it's like to be visible in these spaces, and choose your favorite local venues to express your authentic self. Transform places in your community to be your own - to be welcoming to others like you. Make sure your community is supporting businesses and services that support people like you - however you identify. Then, when you travel, use we-friendly to find -friendly folx - even in unfamiliar locations. Together, we have financial power, so make your dollar count by supporting local businesses and services that support folx like you - near or far from home!
 
 
 ### 1. Working Prototype (to do later)
@@ -65,12 +56,12 @@ This app is for two types of users: a visitor and a logged-in user.
 * I want to view, edit and delete reviews I have written,
 * so I can manage the reviews I write
 
-##### Saved Page (Priority - Medium Est. 2h) (to do later)
+##### me-friendly Page (Priority - Medium Est. 2h) (to do later)
 * as a logged-in user,
 * I want to view and edit businesses and services I have added to the database,
 * so I can follow a link to write a review
 
-##### Saved Page (Priority - Medium Est. 2h) (to do later)
+##### me-friendly Page (Priority - Medium Est. 2h) (to do later)
 * as a logged-in user,
 * I want to view, delete, and link to write a review of businesses and services I have saved,
 * so I can remember to try (or avoid) places based on reviews
@@ -163,8 +154,8 @@ User Flows
                 * __AddRev.js__ (stateful)
                 * __EditRev.js__ (stateful)
                 * __FilterRev.js__ (stateful)
-            * __Saved.js__ (stateful)
-                * __SavedNav.js__ (stateful))
+            * __MeFriendly.js__ (stateful)
+                * __meFriendlyNav.js__ (stateful))
                 * __RevBy.js__ (stateful)
                 * __BusAdded.js__ (stateful)
                 * __Remember.js__ (stateful)
