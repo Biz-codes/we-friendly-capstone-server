@@ -1,6 +1,6 @@
 INSERT INTO users (name, username, password) 
 VALUES 
-('Dorothy', 'not-kansas@gmail.com', 'Friendly1'),
-('Scarecrow', 'no-brain@gmail.com', 'Friendly1'),
-('Tinman', 'no-heart@gmail.com', 'Friendly1'),
-('Cowardly Lion', 'no-nerve@gmail.com', 'Friendly1');
+('Dorothy', 'NotInKansas', 'Friendly1'),
+('Scarecrow', 'NoBrain', 'Friendly1'),
+('Tinman', 'NoHeart', 'Friendly1'),
+('Cowardly Lion', 'KingOfTheForest', 'Friendly1');

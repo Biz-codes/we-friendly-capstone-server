@@ -11,24 +11,24 @@ You can access a working prototype of the React app here: https://we-friendly.ve
 ### 2. User Stories (done)
 This app is for two types of users: a visitor and a logged-in user.
 
-##### Landing Page/Sign Up Page (Priority - High Est. 1h) (to do next)
+##### Landing Page/Sign Up Page (done)
 * as a visitor,
 * I want to sign up for an account,
 * so I can view and write reviews
 
-##### Landing Page/Log In Page (Priority - High Est. 1h) (to do later)
+##### Landing Page/Log In Page (done)
 * as a visitor,
 * I want to log into a demo account,
 * so I can try out the app
 
-##### Landing Page/Log In Page (Priority - High Est. 1h) (to do later)
+##### Landing Page/Log In Page (done)
 * as a logged-in user,
 * I want to log into my account,
 * so I can search for and write reviews
 
 ##### Reviews Page (Priority - High Est. 3h) (to do later)
 * as a logged-in user,
-* I want to search for reviews by business name and/or zipcode, filter by state, business type and/or identity group, and sort by rating, date modified, name, or zipcode,
+* I want to search for reviews by business name and/or zipcode, and filter by state, business type and/or identity group,
 * so I can find reviews of relevant businesses and services where I can have positive experiences
 
 ##### Reviews Page (Priority - High Est. 1h) (to do later)
@@ -38,7 +38,7 @@ This app is for two types of users: a visitor and a logged-in user.
 
 ##### Businesses Page (Priority - High Est. 3h) (to do later)
 * as a logged-in user,
-* I want to search for businesses and services by name and/or zipcode, filter by state and/or business type, and sort by name or zipcode,
+* I want to search for businesses and services by name and/or zipcode, and filter by state and/or business type,
 * so I can review businesses/services I have visited, and visit ones from the Reviews Page
 
 ##### Businesses Page (Priority - High Est. 1h) (to do later)
@@ -49,9 +49,9 @@ This app is for two types of users: a visitor and a logged-in user.
 ##### Businesses Page (Priority - High Est. 1h) (to do later)
 * as a logged-in user,
 * I want to click on link buttons for each business or service
-* so I can add a business, write a review, or save a business
+* so I can add a business, write a review, or "remember" a business
 
-##### Saved Page (Priority - Medium Est. 2h) (to do later)
+##### me-friendly Page (Priority - Medium Est. 2h) (to do later)
 * as a logged-in user,
 * I want to view, edit and delete reviews I have written,
 * so I can manage the reviews I write
@@ -63,7 +63,7 @@ This app is for two types of users: a visitor and a logged-in user.
 
 ##### me-friendly Page (Priority - Medium Est. 2h) (to do later)
 * as a logged-in user,
-* I want to view, delete, and link to write a review of businesses and services I have saved,
+* I want to view and link to write a review of businesses and services I have "remembered",
 * so I can remember to try (or avoid) places based on reviews
 
 ##### Add Review Page (Priority - High Est. 2h) (to do later)
@@ -71,7 +71,7 @@ This app is for two types of users: a visitor and a logged-in user.
 * I want to write and post reviews 
 * To share my experiences with other users
 
-##### Add Business Page (Priority - High Est. 2h) (to do later)
+##### Add Business Page (Priority - High Est. 2h) (done)
 * as a logged-in user,
 * I want to add information for businesses and services
 * so that other people and I can review them
@@ -81,7 +81,7 @@ This app is for two types of users: a visitor and a logged-in user.
 * I want to edit my previous reviews
 * in case I made errors or have had a different experience
 
-##### Edit Business Page (Priority - Medium Est. 2h) (to do later)
+##### Edit Business Page (Priority - Medium Est. 2h) (done)
 * as a logged-in user,
 * I want to edit businesses and services I have added
 * in case I made errors, or something has changed about their contact information
@@ -149,13 +149,12 @@ User Flows
             * __Businesses.js__ (stateful)
                 * __AddBus.js__ (stateful)
                 * __EditBus.js__ (stateful)
-                * __FilterBus.js__ (stateful)      
+                * __SearchBus.js__ (stateful)      
             * __Reviews.js__  (stateful)
                 * __AddRev.js__ (stateful)
                 * __EditRev.js__ (stateful)
-                * __FilterRev.js__ (stateful)
+                * __SearchRev.js__ (stateful)
             * __MeFriendly.js__ (stateful)
-                * __meFriendlyNav.js__ (stateful))
                 * __RevBy.js__ (stateful)
                 * __BusAdded.js__ (stateful)
                 * __Remember.js__ (stateful)
@@ -245,9 +244,9 @@ User Flows
 ```js
     // req.body
     {
-        "name": "Demo User",
+        "name": "Cowardly Lion",
         "password": "Friendly1",
-        "username": "demo-email@gmail.com"
+        "username": "KingOfTheForest"
     }
 
     // res.body
@@ -263,14 +262,14 @@ User Flows
     {
         "name": "Cowardly Lion",
         "password": "Friendly1",
-        "username": "no-nerve@gmail.com"
+        "username": "KingOfTheForest"
     }
 
     // res.body
     {
         "name": "Cowardly Lion",
         "password": "Friendly1",
-        "username": "no-nerve@gmail.com"
+        "username": "KingOfTheForest"
     }
 ```
 
@@ -855,12 +854,14 @@ Edit Project
 
 
 ### 10. Development Roadmap (to do later)
-This is v2.0 of the app, but future enhancements are expected to include:
-* add functionality to allow users to create a shopping list for items they are missing for a project
+This is v1.0 of the app, but future enhancements are expected to include:
+* add functionality to allow users to sort search results by closest zipcode, highest rating, etc.
 * add functionality for users to retrieve forgotten log in information
-* add functionality for users to upload pictures of their projects
-* add icons and/or images for common inventory items
-* add databases shared among users to add tools, supplies and projects that other users have added
+* add functionality for users to upload pictures of businesses/services
+* add functionality for users to like or comment on other user's reviews
+* add functionality to follow favorite reviewers
+* add functionality for users to connect with local events
+
 
 
 
