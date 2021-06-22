@@ -43,6 +43,7 @@ businessesRouter
           .then((business) => {
             res
               .status(201)
+              .location(path.posix.join(req.originalUrl, `/${business.id}`))
               .json(serializeBusiness(business))
           })
           .catch(next)
@@ -102,7 +103,7 @@ businessesRouter
             businessToUpdate
         )
         .then(updatedBusiness => {
-            res.status(200).json(serializeBusiness(updatedBusiness))
+            res.status(201).json(serializeBusiness(updatedBusiness))
         })
         .catch(next)
     })

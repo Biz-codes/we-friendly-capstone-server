@@ -55,10 +55,28 @@ const ReviewsService = {
     },
 
     getReviewsByReviewer(knex, reviewer_id) {
-        return knex
-            .select('*')
-            .from('reviews')
-            .where('reviewer_id', reviewer_id)
+        return knex.raw(`
+        SELECT	
+            bs.name AS name, 
+            bs.category AS category, 
+            bs.zipcode AS zipcode, 
+            re.id AS id,
+            re.reviewer_id AS reviewer_id,
+            re.date_modified AS date_modified,
+            re.friendly_for AS friendly_for,
+            re.rating AS rating,
+            re.review AS review
+        FROM 
+            reviews re
+        LEFT JOIN 
+            businesses bs 
+        ON 
+            re.business_id = bs.id
+        ORDER BY
+            bs.name ASC
+        WHERE 
+            re.reviewer_id = ${user_id};
+        `);
     },
 
     getReviewsByIdentityGroup(knex, friendly_for) {

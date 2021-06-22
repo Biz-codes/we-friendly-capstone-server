@@ -100,7 +100,7 @@ reviewsRouter
             reviewToUpdate
         )
         .then(updatedReview => {
-            res.status(200).json(serializeReview(updatedReview))
+            res.status(201).json(serializeReview(updatedReview))
         })
         .catch(next)
     })

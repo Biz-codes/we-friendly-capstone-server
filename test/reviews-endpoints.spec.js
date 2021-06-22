@@ -2,6 +2,7 @@ const { expect } = require("chai");
 const knex = require("knex");
 const app = require("../src/app");
 const { makeUsersArray } = require("./users.fixtures");
+const { makeBusinessesArray } = require("./businesses.fixtures");
 const {
   makeReviewsArray,
   makeMaliciousReview,
@@ -37,12 +38,16 @@ describe("Reviews Endpoints", function () {
 
     context("Given there are reviews in the database", () => {
       const testUsers = makeUsersArray();
+      const testBusinesses = makeBusinessesArray();
       const testReviews = makeReviewsArray();
 
       beforeEach("insert reviews", () => {
         return db
           .into("users")
           .insert(testUsers)
+          .then(() => {
+            return db.into("businesses").insert(testBusinesses);
+          })
           .then(() => {
             return db.into("reviews").insert(testReviews);
           });
@@ -118,13 +123,12 @@ describe("Reviews Endpoints", function () {
         );
     });
 
-    const requiredFields = ["reviewer_id", "business_id", "date_modified", "friendly_for", "rating", "review"];
+    const requiredFields = ["reviewer_id", "business_id", "friendly_for", "rating", "review"];
 
     requiredFields.forEach((field) => {
       const newReview = {
         reviewer_id: 1,
         business_id: 1,
-        date_modified: "2021-09-30T04:00:00.000Z",
         friendly_for: "Women",
         review: "Test description",
         rating: 1,
@@ -166,7 +170,7 @@ describe("Reviews Endpoints", function () {
         const reviewId = 123456;
         return supertest(app)
           .delete(`/api/reviews/${reviewId}`)
-          .expect(404, { error: { message: `Review doesn't exist` } });
+          .expect(404, { error: { message: `Review not in the database` } });
       });
     });
 
@@ -204,7 +208,7 @@ describe("Reviews Endpoints", function () {
         const reviewId = 123456;
         return supertest(app)
           .patch(`/api/reviews/${reviewId}`)
-          .expect(404, { error: { message: `Review doesn't exist` } });
+          .expect(404, { error: { message: `Review not in the database` } });
       });
     });
 
@@ -221,7 +225,7 @@ describe("Reviews Endpoints", function () {
           });
       });
 
-      it("responds with 204 and updates the review", () => {
+      it("responds with 201 and updates the review", () => {
         const idToUpdate = 2;
         const updatedReview = {
           reviewer_id: 1,
@@ -238,7 +242,7 @@ describe("Reviews Endpoints", function () {
         return supertest(app)
           .patch(`/api/reviews/${idToUpdate}`)
           .send(updatedReview)
-          .expect(204)
+          .expect(201)
           .then((res) =>
             supertest(app)
               .get(`/api/reviews/${idToUpdate}`)

@@ -4,7 +4,7 @@ const app = require('../src/app')
 const { makeUsersArray } = require('./users.fixtures')
 const { makeBusinessesArray, makeMaliciousBusiness } = require('./businesses.fixtures')
 
-describe.only('Businesses Endpoints', function() {
+describe('Businesses Endpoints', function() {
     let db
 
     before('make knex instance', () => {
@@ -183,7 +183,7 @@ describe.only('Businesses Endpoints', function() {
             const businessId = 123456
             return supertest(app)
               .delete(`/api/businesses/${businessId}`)
-              .expect(404, { error: { message: `Business doesn't exist` } })
+              .expect(404, { error: { message: `Business not in the database` } })
           })
          })
     
@@ -225,7 +225,7 @@ describe.only('Businesses Endpoints', function() {
             const businessId = 123456
             return supertest(app)
               .patch(`/api/businesses/${businessId}`)
-              .expect(404, { error: { message: `Business doesn't exist` } })
+              .expect(404, { error: { message: `Business not in the database` } })
           })
         })
     
@@ -245,7 +245,7 @@ describe.only('Businesses Endpoints', function() {
               
           })
           
-          it('responds with 204 and updates the business', () => {
+          it('responds with 201 and updates the business', () => {
             const idToUpdate = 2
             const updatedBusiness = {
               adder_id: 1,
@@ -264,7 +264,7 @@ describe.only('Businesses Endpoints', function() {
             return supertest(app)
               .patch(`/api/businesses/${idToUpdate}`)
               .send(updatedBusiness)
-              .expect(204)
+              .expect(201)
               .then(res =>
                 supertest(app)
                   .get(`/api/businesses/${idToUpdate}`)
@@ -279,12 +279,12 @@ describe.only('Businesses Endpoints', function() {
               .send({ irrelevantField: 'foo' })
               .expect(400, {
                 error: {
-                  message: `Request body must contain either 'name', 'address', 'city', 'state', 'zipcode', or 'website'.`
+                  message: `Request body must contain either 'category', 'name', 'address', 'city', 'state', zipcode, or 'website'.`
                 }
               })
           })
           
-          it(`responds with 204 when updating only a subset of fields`, () => {
+          it(`responds with 201 when updating only a subset of fields`, () => {
             const idToUpdate = 2
             const updatedBusiness = {
               name: 'Updated business',
@@ -300,7 +300,7 @@ describe.only('Businesses Endpoints', function() {
                 ...updatedBusiness,
                 fieldToIgnore: 'should not be in GET response'
               })
-              .expect(204)
+              .expect(201)
                 .then(res =>
                   supertest(app)
                     .get(`/api/businesses/${idToUpdate}`)
