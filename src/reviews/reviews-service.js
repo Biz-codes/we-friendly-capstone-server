@@ -75,7 +75,7 @@ const ReviewsService = {
         ORDER BY
             bs.name ASC
         WHERE 
-            re.reviewer_id = ${user_id};
+            re.reviewer_id = ${reviwer_id};
         `);
     },
 
