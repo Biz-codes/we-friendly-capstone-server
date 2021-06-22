@@ -146,7 +146,7 @@ reviewsRouter
         //connect to the service to get the data
         ReviewsService.getReviewsByReviewer(
             req.app.get('db'),
-            // req.params.reviewer_id
+            req.params.reviewer_id
         )
         .then(reviews => {
             if(!reviews) {
@@ -156,7 +156,7 @@ reviewsRouter
                     }
                 })
             }
-            res.json(reviews.rows)            
+            res.json(reviews.map(serializeReview))            
         })
         .catch(next)
     })
