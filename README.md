@@ -28,7 +28,7 @@ This app is for two types of users: a visitor and a logged-in user.
 
 ##### Reviews Page (Priority - High Est. 3h) (to do later)
 * as a logged-in user,
-* I want to search for reviews by business name and/or zipcode, and filter by state, business type and/or identity group,
+* I want to search for reviews by business name, zipcode, state, category and/or identity group,
 * so I can find reviews of relevant businesses and services where I can have positive experiences
 
 ##### Reviews Page (Priority - High Est. 1h) (to do later)
@@ -38,7 +38,7 @@ This app is for two types of users: a visitor and a logged-in user.
 
 ##### Businesses Page (Priority - High Est. 3h) (to do later)
 * as a logged-in user,
-* I want to search for businesses and services by name and/or zipcode, and filter by state and/or business type,
+* I want to search for businesses and services by name, zipcode state and/or category,
 * so I can review businesses/services I have visited, and visit ones from the Reviews Page
 
 ##### Businesses Page (Priority - High Est. 1h) (to do later)
@@ -152,6 +152,7 @@ User Flows
                 * __SearchBus.js__ (stateful)      
             * __Reviews.js__  (stateful)
                 * __AddRev.js__ (stateful)
+                    * __RatingStars.js__ (stateful)
                 * __EditRev.js__ (stateful)
                 * __SearchRev.js__ (stateful)
             * __MeFriendly.js__ (stateful)
