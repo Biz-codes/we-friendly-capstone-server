@@ -31,11 +31,6 @@ This app is for two types of users: a visitor and a logged-in user.
 * I want to search for reviews by business name, zipcode, state, category and/or identity group,
 * so I can find reviews of relevant businesses and services where I can have positive experiences
 
-##### Reviews Page (Priority - High Est. 1h) (to do later)
-* as a logged-in user,
-* I want to click on the name of each business or service being reviewed and link to the Businesses Page, 
-* so I can find contact information for places with positive reviews
-
 ##### Businesses Page (Priority - High Est. 3h) (to do later)
 * as a logged-in user,
 * I want to search for businesses and services by name, zipcode state and/or category,
@@ -43,13 +38,8 @@ This app is for two types of users: a visitor and a logged-in user.
 
 ##### Businesses Page (Priority - High Est. 1h) (to do later)
 * as a logged-in user,
-* I want to click on a link for each business or service and link to the Reviews Page,
-* so I can read the reviews for that business
-
-##### Businesses Page (Priority - High Est. 1h) (to do later)
-* as a logged-in user,
 * I want to click on link buttons for each business or service
-* so I can add a business, write a review, or "remember" a business
+* so I can add a business or write a review
 
 ##### me-friendly Page (Priority - Medium Est. 2h) (to do later)
 * as a logged-in user,
@@ -60,11 +50,6 @@ This app is for two types of users: a visitor and a logged-in user.
 * as a logged-in user,
 * I want to view and edit businesses and services I have added to the database,
 * so I can follow a link to write a review
-
-##### me-friendly Page (Priority - Medium Est. 2h) (to do later)
-* as a logged-in user,
-* I want to view and link to write a review of businesses and services I have "remembered",
-* so I can remember to try (or avoid) places based on reviews
 
 ##### Add Review Page (Priority - High Est. 2h) (to do later)
 * as a logged-in user,
@@ -187,10 +172,7 @@ User Flows
     * friendly_for (from enum identity_group type)
     * rating (1-5, NOT NULL)
     * review (VARCHAR(255) NOT NULL)
-* Remembered Businesses (database table)
-    * id (auto-generated)
-    * user_id (foreign key to users table)
-    * business_id (foreign key to businesses table)
+
 
     
 
@@ -211,8 +193,6 @@ User Flows
     |   └── GET
     |       ├── /
     |       ├── /:business_id
-    |       ├── /categories/:business_category
-    |       ├── /states/:state
     |       ├── /added-by-me/:adder_id
     |   └── POST
     |       ├── /
@@ -222,23 +202,14 @@ User Flows
     |   └── GET
     |       ├── /
     |       ├── /:review_id
-    |       ├── /reviews-by-business/:business_id
     |       ├── /written-by-me/:reviewer_id
-    |       ├── /identities/:friendly_for
     |   └── POST
     |       ├── /
     |   └── DELETE
     |       ├── /:review_id
     |   └── PATCH
     |       └── /:review_id
-    ├── /remembered-businesses
-    |   └── GET
-    |       ├── /:remembered_business_id
-    |       ├── /remembered-by-me/:user_id
-    |   └── POST
-    |       ├── /
-    |   └── DELETE
-    |       └── /:remembered_business_id
+    
 ```
 
 ##### POST `/api/auth/login`
@@ -421,114 +392,6 @@ User Flows
     ]
 ```
 
-##### GET `/api/businesses/states/:state`
-```js
-    // req.query
-        `/MA`
-
-    // res.body
-    [
-        {
-            "id": 8,
-            "adder_id": 1,
-            "category": "restaurant/bar",
-            "name": "Woodstar Cafe",
-            "address": "60 Masonic Street",
-            "city": "Northampton",
-            "state": "MA",
-            "zipcode": "01060",
-            "website": "woodstarcafe.com"
-        },
-        {
-            "id": 9,
-            "adder_id": 2,
-            "category": "shopping",
-            "name": "Cedar Chest",
-            "address": "150 Main Street",
-            "city": "Northampton",
-            "state": "MA",
-            "zipcode": "01060",
-            "website": "explorecedarchest.com"
-        },
-        {
-            "id": 11,
-            "adder_id": 1,
-            "category": "service",
-            "name": "Home Environmental Services",
-            "address": "4 School Street",
-            "city": "Westfield",
-            "state": "MA",
-            "zipcode": "01085",
-            "website": "homeenvironmentalservices.com"
-        },
-        {
-            "id": 12,
-            "adder_id": 2,
-            "category": "housing/realty",
-            "name": "Mill Valley Estates",
-            "address": "420 Riverglade Drive",
-            "city": "Amherst",
-            "state": "MA",
-            "zipcode": "01002",
-            "website": "millvalleyapts.com"
-        },
-        {
-            "id": 14,
-            "adder_id": 1,
-            "category": "healthcare",
-            "name": "Carroll McGrath APRN",
-            "address": "234 Russell Street, Suite 203",
-            "city": "Hadley",
-            "state": "MA",
-            "zipcode": "01035",
-            "website": "www.psychologytoday.com/us/psychiatrists/carroll-mcgrath-aprn-hadley-ma/174408"
-        },
-        {
-            "id": 15,
-            "adder_id": 1,
-            "category": "restaurant/bar",
-            "name": "Thai Garden",
-            "address": "2 Bridge St",
-            "city": "Northampton",
-            "state": "MA",
-            "zipcode": "01060",
-            "website": "thaigardennorthampton.com"
-        }
-    ]
-```
-
-##### GET `/api/businesses/categories/:business_category`
-```js
-    // req.query
-        `/restaurant%2Fbar`
-
-    // res.body
-    [
-        {
-            "id": 8,
-            "adder_id": 1,
-            "category": "restaurant/bar",
-            "name": "Woodstar Cafe",
-            "address": "60 Masonic Street",
-            "city": "Northampton",
-            "state": "MA",
-            "zipcode": "01060",
-            "website": "woodstarcafe.com"
-        },
-        {
-            "id": 15,
-            "adder_id": 1,
-            "category": "restaurant/bar",
-            "name": "Thai Garden",
-            "address": "2 Bridge St",
-            "city": "Northampton",
-            "state": "MA",
-            "zipcode": "01060",
-            "website": "thaigardennorthampton.com"
-        }
-    ]
-```
-
 ##### POST `/api/businesses/`
 ```js
     // req.body
@@ -636,55 +499,10 @@ User Flows
     }
 ```
 
-##### GET `/api/reviews/reviews-by-business/:business_id`
-```js
-    // req.query
-        `/8`
-    // res.body
-    [
-        {
-            "id": 1,
-            "reviewer_id": 1,
-            "business_id": 8,
-            "date_modified": "2021-09-30T04:00:00.000Z",
-            "friendly_for": "LGBTQIA+",
-            "rating": 5,
-            "review": "Very queer friendly! And great coffee too"
-        },
-        {
-            "id": 2,
-            "reviewer_id": 2,
-            "business_id": 8,
-            "date_modified": "2021-09-30T04:00:00.000Z",
-            "friendly_for": "LGBTQIA+",
-            "rating": 5,
-            "review": "I felt totally welcomed. Northampton rocks!"
-        }
-    ]
-```
-
 ##### GET `/api/reviews/written-by-me/:reviewer_id`
 ```js
     // req.query
         `/3`
-    // res.body
-    [
-        {
-            "id": 3,
-            "reviewer_id": 3,
-            "business_id": 9,
-            "date_modified": "2021-09-30T04:00:00.000Z",
-            "friendly_for": "Disabled persons",
-            "rating": 3,
-            "review": "I had to go out into Thornes to take the elevator to the second floor, and some of the displays were close together, but the staff were helpful!"
-        }
-    ]
-```
-
-##### GET `/api/reviews/identities/:friendly_for`
-```js
-    // req.query
-        `/Disabled%20persons`
     // res.body
     [
         {
@@ -756,68 +574,6 @@ User Flows
 
 ```
 
-##### GET `/api/remembered-businesses/:business_id`
-```js
-    // req.query
-        `/1`
-
-    // res.body
-    {
-        "id": 1,
-        "user_id": 1,
-        "business_id": 8
-    }
-```
-
-##### GET `/api/remembered-businesses/remembered-by-me/:user_id`
-```js
-    // req.query
-        `/1`
-
-    // res.body
-    [
-        {
-            "id": 1,
-            "user_id": 1,
-            "business_id": 8
-        },
-        {
-            "id": 3,
-            "user_id": 1,
-            "business_id": 9
-        },
-        {
-            "id": 4,
-            "user_id": 1,
-            "business_id": 14
-        }
-    ]
-```
-
-##### POST `/api/remembered-businesses/`
-```js
-    // req.body
-    {
-        "user_id": 2,
-        "business_id": 10
-    }
-
-    // res.body
-    {
-        "id": 5,
-        "user_id": 2,
-        "business_id": 10
-    }
-```
-
-##### DELETE `/api/remembered-businesses/:remembered_business_id`
-```js
-    // req.query
-    `/5`
-
-    // res.body
-    
-```
 
 
 
@@ -857,6 +613,9 @@ Edit Project
 ### 10. Development Roadmap (to do later)
 This is v1.0 of the app, but future enhancements are expected to include:
 * add functionality to allow users to sort search results by closest zipcode, highest rating, etc.
+* add functionality on Reviews page to allow users to click on the name of each business or service being reviewed and link to the Businesses Page, to see details about that business
+* add functionality on Businesses page to allow users to click on a link for each business or service and link to the Reviews Page, to see reviews for that business
+* add functionality to allow users to save a list of businesses they want to remember to check out (or avoid)
 * add functionality for users to retrieve forgotten log in information
 * add functionality for users to upload pictures of businesses/services
 * add functionality for users to like or comment on other user's reviews
