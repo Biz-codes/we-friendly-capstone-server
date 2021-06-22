@@ -28,8 +28,8 @@ reviewsRouter
     })
 
     .post(jsonParser, (req, res, next) => {
-        const { reviewer_id, business_id, date_modified, friendly_for, rating, review } = req.body;
-        const newReview = { reviewer_id, business_id, date_modified, friendly_for, rating, review }
+        const { reviewer_id, business_id, friendly_for, rating, review } = req.body;
+        const newReview = { reviewer_id, business_id, friendly_for, rating, review }
     
         for (const [key, value] of Object.entries(newReview))
           if (value == null)
@@ -81,8 +81,8 @@ reviewsRouter
     })
     .patch(jsonParser, (req, res, next) => {
 
-        const { reviewer_id, business_id, date_modified, friendly_for, rating, review } = req.body
-        const reviewToUpdate = { reviewer_id, business_id, date_modified, friendly_for, rating, review }
+        const { reviewer_id, business_id, friendly_for, rating, review } = req.body
+        const reviewToUpdate = { reviewer_id, business_id, friendly_for, rating, review }
 
         const numberOfValues = Object.values(reviewToUpdate).filter(Boolean).length
         if (numberOfValues === 0) {
