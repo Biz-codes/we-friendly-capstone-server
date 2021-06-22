@@ -54,7 +54,7 @@ const ReviewsService = {
             .where('business_id', business_id)
     },
 
-    getReviewsByReviewer(knex, reviewer_id) {
+    getReviewsByReviewer(knex) {
         return knex.raw(`
         SELECT	
             bs.name AS name, 
@@ -75,7 +75,7 @@ const ReviewsService = {
         ORDER BY
             bs.name ASC
         WHERE 
-            re.reviewer_id = ${reviwer_id};
+            re.reviewer_id = reviewer_id;
         `);
     },
 
