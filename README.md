@@ -587,26 +587,21 @@ Sign Up Page
 ![Sign Up Page](/github-images/screenshots/sign-up-page.png)
 Log In Page
 ![Log In Page](/github-images/screenshots/log-in-page.png)
-"My DIY Dashboard"
-!["My DIY Dashboard"](/github-images/screenshots/dashboard.png)
-"My DIY Supplies"
-!["My DIY Supplies"](/github-images/screenshots/supplies.png)
-Add Supply
-![Add Supply](/github-images/screenshots/add-supply.png)
-Edit Supply
-![Edit Supply](/github-images/screenshots/edit-supply.png)
-"My DIY Tools"
-!["My DIY Tools"](/github-images/screenshots/tools.png)
-Add Tool
-![Add Tool](/github-images/screenshots/add-tool.png)
-Edit Tool
-![Edit Tool](/github-images/screenshots/edit-tool.png)
-"My DIY Projects"
-!["My DIY Projects"](/github-images/screenshots/projects.png)
-Add Project
-![Add Project](/github-images/screenshots/add-project.png)
-Edit Project
-![Edit Project](/github-images/screenshots/edit-project.png)
+Reviews
+!["Reviews Page"](/github-images/screenshots/reviews.png)
+Businesses
+!["Businesses Page"](/github-images/screenshots/businesses.png)
+"me-friendly"
+!["me-friendly"](/github-images/screenshots/me-friendly.png)
+Add Business
+![Add Business](/github-images/screenshots/add-business.png)
+Add Review
+![Add Review](/github-images/screenshots/add-review.png)
+Edit Business
+![Edit Business](/github-images/screenshots/edit-business.png)
+Edit Review
+![Edit Review](/github-images/screenshots/edit-review.png)
+
 
 
 
