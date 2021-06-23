@@ -156,7 +156,7 @@ reviewsRouter
                     }
                 })
             }
-            res.json(reviews.map(serializeReview))            
+            res.json(reviews.rows)            
         })
         .catch(next)
     })
