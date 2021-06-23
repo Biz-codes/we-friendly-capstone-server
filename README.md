@@ -3,100 +3,99 @@
 we-friendly is a crowd-sourced hub for voices from communities to share insight into which spaces are respectful, accessible and affirming! Find businesses and services that are -friendly toward folx who share aspects of YOUR lived experience. Discover what it's like to be visible in these spaces, and choose your favorite local venues to express your authentic self. Transform places in your community to be your own - to be welcoming to others like you. Make sure your community is supporting businesses and services that support people like you - however you identify. Then, when you travel, use we-friendly to find -friendly folx - even in unfamiliar locations. Together, we have financial power, so make your dollar count by supporting local businesses and services that support folx like you - near or far from home!
 
 
-### 1. Working Prototype (to do later)
+### 1. Working Prototype
 You can access a working prototype of the React app here: https://we-friendly.vercel.app/ and Node app here: https://we-friendly.herokuapp.com/
 
 
 
-### 2. User Stories (done)
+### 2. User Stories
 This app is for two types of users: a visitor and a logged-in user.
 
-##### Landing Page/Sign Up Page (done)
+##### Landing Page/Sign Up Page
 * as a visitor,
 * I want to sign up for an account,
 * so I can view and write reviews
 
-##### Landing Page/Log In Page (done)
+##### Landing Page/Log In Page
 * as a visitor,
 * I want to log into a demo account,
 * so I can try out the app
 
-##### Landing Page/Log In Page (done)
+##### Landing Page/Log In Page
 * as a logged-in user,
 * I want to log into my account,
 * so I can search for and write reviews
 
-##### Reviews Page (Priority - High Est. 3h) (to do later)
+##### Reviews Page
 * as a logged-in user,
 * I want to search for reviews by business name, zipcode, state, category and/or identity group,
 * so I can find reviews of relevant businesses and services where I can have positive experiences
 
-##### Businesses Page (Priority - High Est. 3h) (to do later)
+##### Businesses Page
 * as a logged-in user,
 * I want to search for businesses and services by name, zipcode state and/or category,
 * so I can review businesses/services I have visited, and visit ones from the Reviews Page
 
-##### Businesses Page (Priority - High Est. 1h) (to do later)
+##### Businesses Page
 * as a logged-in user,
 * I want to click on link buttons for each business or service
 * so I can add a business or write a review
 
-##### me-friendly Page (Priority - Medium Est. 2h) (to do later)
+##### me-friendly Page
 * as a logged-in user,
 * I want to view, edit and delete reviews I have written,
 * so I can manage the reviews I write
 
-##### me-friendly Page (Priority - Medium Est. 2h) (to do later)
+##### me-friendly Page
 * as a logged-in user,
 * I want to view and edit businesses and services I have added to the database,
 * so I can follow a link to write a review
 
-##### Add Review Page (Priority - High Est. 2h) (to do later)
+##### Add Review Page
 * as a logged-in user,
 * I want to write and post reviews 
 * To share my experiences with other users
 
-##### Add Business Page (Priority - High Est. 2h) (done)
+##### Add Business Page 
 * as a logged-in user,
 * I want to add information for businesses and services
 * so that other people and I can review them
 
-##### Edit Review Page (Priority - Medium Est. 2h) (to do later)
+##### Edit Review Page
 * as a logged-in user,
 * I want to edit my previous reviews
 * in case I made errors or have had a different experience
 
-##### Edit Business Page (Priority - Medium Est. 2h) (done)
+##### Edit Business Page
 * as a logged-in user,
 * I want to edit businesses and services I have added
 * in case I made errors, or something has changed about their contact information
 
 
 
-### 3. Functionality (done)
+### 3. Functionality
 The app's functionality (v1.0) includes:
 * All users can access a demo account to try the app.
 * All users can create an account.
 * All users can click on contact information links for the app creator.
-* Logged-in users can search for reviews by business name and/or zipcode, filter by state, business type and/or identity group, and sort by rating, date modified, name, or zipcode. 
-* Logged-in users can search for businesses and services by name and/or zipcode, filter by state and/or business type, and sort by name or zipcode.
+* Logged-in users can search for reviews by business name, zipcode, state, category and/or identity group. 
+* Logged-in users can search for businesses and services by name, zipcode, state and/or category.
 * Logged-in users can read all reviews, write reviews, and edit and delete the reviews they have written.
 * Logged-in users can view details about, save and add businesses/services, and edit details for businesses they have added.
-* Logged-in users can cross-reference businesses and reviews.
 * Logged-in users can navigate between the Landing, Reviews and Businesses pages, and their Saved page - using top navigation.
 * Logged-in users can log out to return to the Landing page.
 * All users can use accessibility features such as text-to-speech and navigation via keyboard.
 
 
 
-### 4. Technology (done)
+### 4. Technology
 * Front-End: HTML5, CSS3, JavaScript ES6, React
 * Back-End: Node.js, Express.js, Mocha, Chai, RESTful API Endpoints, Postgres
 * Development Environment: Heroku, DBeaver
 
 
 
-### 5. Wireframes (done)
+### 5. Wireframes
 Landing Page
 :-------------------------:
 ![Landing Page](/github-images/wireframes/landing-page.jpeg)
@@ -108,23 +107,21 @@ Reviews Page
 ![Reviews Page](/github-images/wireframes/reviews.jpg)
 Businesses Page
 !["Businesses Page"](/github-images/wireframes/businesses.jpeg)
-Saved Page 
-![Saved Page Reviews](/github-images/wireframes/saved-reviews.jpg)
-![Saved Page Businesses Added](/github-images/wireframes/saved-businesses-added.jpg)
-![Saved Page Businesses to Remember](/github-images/wireframes/saved-businesses-remember.jpg)
-Add/Edit Review
-![Add/Edit Review](/github-images/wireframes/add-edit-review.jpg)
-Add/Edit Business
-![Add/Edit Business](/github-images/wireframes/add-edit-business.jpeg)
-User Flows
-![User Flows 1](/github-images/wireframes/user-flows-1.jpg)
-![User Flows 2](/github-images/wireframes/user-flows-2.jpg)
-![User Flows 3](/github-images/wireframes/user-flows-3.jpg)
+"me-friendly" Page 
+![me-friendly Page](/github-images/wireframes/me-friendly.jpg)
+Add Review
+![Add Review](/github-images/wireframes/add-review.jpg)
+Edit Review
+![Edit Review](/github-images/wireframes/edit-review.jpg)
+Add Business
+![Add Business](/github-images/wireframes/add-business.jpeg)
+Edit Business
+![Edit Business](/github-images/wireframes/edit-business.jpeg)
 
 
 
 
-### 6. Front-end Structure - React Components Map (done)
+### 6. Front-end Structure - React Components Map
 * __index.js__ (stateless)
     * __App.js__ (stateful)
         * __Landing.js__ (stateless)
@@ -147,7 +144,7 @@ User Flows
 
 
 
-### 7. Back-end Structure - Business Objects (done)
+### 7. Back-end Structure - Business Objects
 * Users (database table)
     * id (auto-generated)
     * username (at least 3 characters, validated for uniqueness)
@@ -178,7 +175,7 @@ User Flows
 
 
 
-### 8. API Documentation (done)
+### 8. API Documentation
 #### API Overview 
 ```text
     /api
@@ -579,7 +576,7 @@ User Flows
 
 
 
-### 9. Screenshots (to do later)
+### 9. Screenshots
 Landing Page
 :-------------------------:
 ![Landing Page](/github-images/screenshots/landing-page.png)
@@ -605,7 +602,7 @@ Edit Review
 
 
 
-### 10. Development Roadmap (to do later)
+### 10. Development Roadmap
 This is v1.0 of the app, but future enhancements are expected to include:
 * add functionality to allow users to sort search results by closest zipcode, highest rating, etc.
 * add functionality on Reviews page to allow users to click on the name of each business or service being reviewed and link to the Businesses Page, to see details about that business
@@ -621,15 +618,15 @@ This is v1.0 of the app, but future enhancements are expected to include:
 
 
 
-### 11. How to run it (done)
+### 11. How to run it 
 Use command line to navigate into the project folder and run the following in terminal
 
-##### Local React scripts (done)
+##### Local React scripts 
 * To install the react project ===> npm install
 * To run react (on port 3000) ===> npm start
 * To run tests ===> npm run test
 
-##### Local Node scripts (done)
+##### Local Node scripts 
 * To install the node project ===> npm install
 * To migrate the database ===> npm run migrate -- 1
 * To run Node server (on port 8000) ===> npm run dev
