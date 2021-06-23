@@ -90,7 +90,7 @@ The app's functionality (v1.0) includes:
 
 ### 4. Technology
 * Front-End: HTML5, CSS3, JavaScript ES6, React
-* Back-End: Node.js, Express.js, Mocha, Chai, RESTful API Endpoints, Postgres
+* Back-End: Node.js, Express.js, Mocha, Chai, RESTful API Endpoints, PostgreSQL
 * Development Environment: Heroku, DBeaver
 
 
